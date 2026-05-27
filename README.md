@@ -250,7 +250,97 @@ true || false && false // resultado: true  (&& antes de ||)
 
 ---
 
-## 9. Erros Léxicos
+## 9. Classes
+
+Classes são estruturas que definem o modelo de um objeto, agrupando atributos e métodos. Em TypeScript, classes suportam tipagem estática, modificadores de acesso e herança.
+
+### 9.1 Declaração de Classe
+
+```ts
+class Pessoa {
+  nome: string;
+  idade: number;
+
+  constructor(nome: string, idade: number) {
+    this.nome = nome;
+    this.idade = idade;
+  }
+
+  apresentar(): string {
+    return `Olá, meu nome é ${this.nome}`;
+  }
+}
+```
+
+### 9.2 Modificadores de Acesso
+
+Controlam a visibilidade dos atributos e métodos de uma classe:
+
+| Modificador  | Descrição                                          |
+|--------------|----------------------------------------------------|
+| `public`     | Acessível de qualquer lugar (padrão)               |
+| `private`    | Acessível apenas dentro da própria classe          |
+| `protected`  | Acessível na classe e nas subclasses               |
+| `readonly`   | Só pode ser atribuído no construtor                |
+
+**Exemplo:**
+```ts
+class Conta {
+  public titular: string;
+  private saldo: number;
+  readonly numeroConta: number;
+
+  constructor(titular: string, numero: number) {
+    this.titular = titular;
+    this.saldo = 0;
+    this.numeroConta = numero;
+  }
+}
+```
+
+### 9.3 Herança
+
+Uma classe pode herdar atributos e métodos de outra usando `extends`. O `super()` chama o construtor da classe pai:
+
+```ts
+class Animal {
+  nome: string;
+  constructor(nome: string) {
+    this.nome = nome;
+  }
+  mover(): void {
+    console.log(`${this.nome} se moveu`);
+  }
+}
+
+class Cachorro extends Animal {
+  latir(): void {
+    console.log("Au au!");
+  }
+}
+```
+
+### 9.4 Implementação de Interface
+
+Uma classe pode implementar uma interface usando `implements`, garantindo que ela possua os membros definidos:
+
+```ts
+interface Veiculo {
+  velocidade: number;
+  acelerar(): void;
+}
+
+class Carro implements Veiculo {
+  velocidade: number = 0;
+  acelerar(): void {
+    this.velocidade += 10;
+  }
+}
+```
+
+---
+
+## 10. Erros Léxicos
 
 Qualquer símbolo ou sequência que não se enquadre nas regras léxicas é considerado erro léxico. Exemplos:
 
