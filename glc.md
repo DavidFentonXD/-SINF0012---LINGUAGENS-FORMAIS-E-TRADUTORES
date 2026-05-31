@@ -1,4 +1,4 @@
-# 📋 GLC da Linguagem de Programação TypeScript
+# GLC da Linguagem de Programação TypeScript
 
 Terminais são representados pelos elementos cuja grafia está em maiúsculo, bem como pelos símbolos que estão entre aspas duplas (`"`).
 
