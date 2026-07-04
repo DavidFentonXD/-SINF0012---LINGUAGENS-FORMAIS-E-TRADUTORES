@@ -45,7 +45,7 @@ vardecl → tipodecl ID ":" tipo
 
 tipodecl → LET
          | VAR
-         | CONST tipo
+         | CONST
 
 tipo → STRING
      | NUMBER
