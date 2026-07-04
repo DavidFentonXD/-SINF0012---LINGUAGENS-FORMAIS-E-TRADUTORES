@@ -54,22 +54,9 @@ O comando `while` inicia com a palavra reservada `while`, seguido por uma expres
 
 ## 1.2 Declarações de Variáveis
 
-TypeScript suporta declaração de variáveis com tipagem explícita, com ou sem atribuição inicial, incluindo suporte a listas:
+TypeScript suporta declarações de variáveis utilizando `let`, `var` e `const`, todas acompanhadas obrigatoriamente de um tipo explícito. No caso de `const`, a variável deve ser inicializada no momento da declaração, pois seu valor não poderá ser reatribuído posteriormente.
 
-```
-vardecl → tipodecl ID ":" tipo
-        | tipodecl ID ":" tipo "=" expressao
-        | tipodecl ID ":" tipo "[" "]" "=" "[" "]"
-        | tipodecl ID ":" tipo "[" "]" "=" "[" listexp "]"
-
-tipodecl → LET | VAR | CONST tipo
-
-tipo → STRING | NUMBER | BOOLEAN
-
-listexp → expressao
-        | expressao "," listexp
-```
-
+A produção `tipodecl` representa apenas o modificador da declaração (`LET`, `VAR` ou `CONST`), enquanto o tipo é informado posteriormente pela produção `tipo`.
 ---
 
 ## 1.3 Expressões
