@@ -10,10 +10,14 @@ programa → funcdecl
          | comandos
          | comandos programa
 
-funcdecl → signature body
+funcdecl → signature
+         | signatureproto body
 
 signature → tipofunc ID "(" funcparametros ")" ":" tipo body
-          | tipofunc ID "(" funcparametros ")" ":" tipo ";"
+          | tipofunc ID "(" ")" ":" tipo body
+
+signatureproto → tipofunc ID "(" funcparametros ")" ":" tipo ";"
+               | tipofunc ID "(" ")" ":" tipo ";"
 
 tipofunc → FUNCTION | CONST
 
@@ -23,7 +27,7 @@ funcparametros → ID ":" tipo
 body → "{" comandos "}"
 ```
 
-Onde `tipofunc` indica se a declaração é uma `function` ou `const`. O `ID` seguinte representa o nome da função. `funcparametros` lista os parâmetros com seus tipos. O `tipo` indica o tipo de retorno. Por último, `body` representa o bloco com um ou mais comandos.
+Onde `tipofunc` indica se a declaração é uma `function` ou `const`. O `ID` seguinte representa o nome da função. `funcparametros` lista os parâmetros com seus tipos — quando a função não recebe parâmetros, os parênteses aparecem vazios (`( )`), sem passar por `funcparametros`. O `tipo` indica o tipo de retorno. Uma função pode vir com o corpo já embutido em `signature` (`funcdecl → signature`), ou como um protótipo terminado em `;` (`signatureproto`) seguido de um `body` separado.
 
 ---
 
@@ -146,15 +150,15 @@ function some(a: number, b: number): number {
 }
 ```
 
-**Exemplo 2 — bloco de declarações:**
+**Exemplo 2 — declarações no nível de programa:**
 
 ```typescript
-{
-    let a: number = 1;
-    let nome: string = "TypeScript";
-    let ativo: boolean = true;
-}
+let a: number = 1;
+let nome: string = "TypeScript";
+let ativo: boolean = true;
 ```
+
+> Nota: no nível de `programa`, comandos soltos (`comandos`) não têm chaves em volta — as chaves `{ }` só existem como parte de `body`, ou seja, dentro do corpo de uma função. Um bloco `{ ... }` sozinho fora de uma função não é reconhecido pela gramática atual.
 
 **Exemplo 3 — comando `for` com incremento:**
 
