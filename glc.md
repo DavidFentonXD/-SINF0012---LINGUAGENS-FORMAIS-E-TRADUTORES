@@ -8,10 +8,14 @@ programa → funcdecl
          | comandos
          | comandos programa
 
-funcdecl → signature body
+funcdecl → signature
+         | signatureproto body
 
 signature → tipofunc ID "(" funcparametros ")" ":" tipo body
-          | tipofunc ID "(" funcparametros ")" ":" tipo ";"
+          | tipofunc ID "(" ")" ":" tipo body
+
+signatureproto → tipofunc ID "(" funcparametros ")" ":" tipo ";"
+               | tipofunc ID "(" ")" ":" tipo ";"
 
 tipofunc → FUNCTION
          | CONST
